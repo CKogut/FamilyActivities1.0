@@ -1,35 +1,28 @@
-const API_URL = `http://localhost:8080`;
-// alert("test");
+const API_URL = 'http://localhost:8080'; // Replace with your actual API URL
 
-// uses FETCH web api
-// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+let data;
+
 function fetchActivitiesData() {
-  fetch(`${API_URL}/api/activities`)
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      showSuggestion(data);
+  return fetch(`${API_URL}/api/activities`)
+    .then(res => res.json())
+    .then(resultData => {
+      data = resultData; // Set the global data variable
+      showRandom(data);
     })
     .catch(error => {
       console.log(`Error Fetching data : ${error}`);
-      document.getElementById('activities').innerHTML = 'Error Loading Data';
+      document.getElementById('suggestion').innerHTML = 'Error Loading Data';
     });
 }
 
-// Function to pick a random object from the JSON data
 function getRandomObject(data) {
   var randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
 
-function showSuggestion(data) {
-  // the data parameter will be a JS array of JS objects
-  // this uses a combination of "HTML building" DOM methods (the document createElements) and
-  // simple string interpolation (see the 'a' tag on title)
-  // both are valid ways of building the html.
-  const activities = document.getElementById('activities');
-  const list = document.createDocumentFragment();
+function showRandom(data) {
+  const suggestionContainer = document.getElementById('suggestion');
+  suggestionContainer.innerHTML = ''; // Clear previous content
 
   let div = document.createElement('div');
   let title = document.createElement('h3');
@@ -40,10 +33,48 @@ function showSuggestion(data) {
   title.innerHTML = `<a href="details.html?activityid=${randomObject.id}">${randomObject.description}</a>`;
 
   div.appendChild(title);
-  list.appendChild(div);
-
-  activities.appendChild(list);
+  suggestionContainer.appendChild(div);
 }
+
+function displayObjectsByLocation(location) {
+  // Ensure data is defined before attempting to use it
+  if (!data) {
+    console.error('Data is not defined.');
+    return;
+  }
+
+  var matchingObjectsContainer = document.getElementById('matchingObjects');
+  matchingObjectsContainer.innerHTML = ''; // Clear previous content
+
+  data.forEach(function (activity) {
+    if (location === 'all' || activity.inOrOut.toLowerCase() === location.toLowerCase()) {
+      displayActivity(activity);
+    }
+  });
+}
+
+function displayActivity(activity) {
+  var matchingObjectsContainer = document.getElementById('matchingObjects');
+
+  var activityDiv = document.createElement('div');
+  activityDiv.classList.add('activity');
+
+  var description = document.createElement('h2');
+  description.textContent = activity.description;
+
+  var details = document.createElement('p');
+  details.textContent = `Cost: ${activity.cost}, Participants: ${activity.minParticipants}-${activity.maxParticipants}, Time: ${activity.time} hours`;
+
+  activityDiv.appendChild(description);
+  activityDiv.appendChild(details);
+
+  matchingObjectsContainer.appendChild(activityDiv);
+}
+
+document.getElementById('location').addEventListener('change', function () {
+  var selectedLocation = this.value;
+  displayObjectsByLocation(selectedLocation);
+});
 
 function handlePage() {
   console.log('load all activities');

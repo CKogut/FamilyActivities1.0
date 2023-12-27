@@ -12,9 +12,22 @@
     <h1>Family Activities</h1>
     <a href="addactivity.html" style="float: right">Add an activity</a>
     <section id="section">
-      <div id="suggest"></div>
-      <button onClick="window.location.reload();">Random Suggestion!</button>
-      <div id="activities"></div>
+      <div id="select">
+        <button onClick="window.location.reload();">
+          <span>Random Suggestion!</span>
+        </button>
+      </div>
+
+      <div id="suggestion"></div>
+      <br />
+
+      <label for="location">Inside or outside activities?</label>
+      <select name="location" id="location">
+        <option disabled selected value>-Select an option-</option>
+        <option value="Inside">Inside</option>
+        <option value="Outside">Outside</option>
+      </select>
+      <div id="matchingObjects"></div>
     </section>
   </body>
 </html>
