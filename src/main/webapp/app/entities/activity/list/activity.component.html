@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="ActivityHeading">
+    <span>Activities</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-activity"
+        [routerLink]="['/activity/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new Activity</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (activities?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>No Activities found</span>
+    </div>
+  }
+
+  @if (activities && activities.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span>Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cost">
+              <div class="d-flex">
+                <span>Cost</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="minParticipants">
+              <div class="d-flex">
+                <span>Min Participants</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maxParticipants">
+              <div class="d-flex">
+                <span>Max Participants</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="time">
+              <div class="d-flex">
+                <span>Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="inOrOut">
+              <div class="d-flex">
+                <span>In Or Out</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="homeOrAway">
+              <div class="d-flex">
+                <span>Home Or Away</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (activity of activities; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/activity', activity.id, 'view']">{{ activity.id }}</a>
+              </td>
+              <td>{{ activity.description }}</td>
+              <td>{{ activity.cost }}</td>
+              <td>{{ activity.minParticipants }}</td>
+              <td>{{ activity.maxParticipants }}</td>
+              <td>{{ activity.time }}</td>
+              <td>{{ activity.inOrOut }}</td>
+              <td>{{ activity.homeOrAway }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/activity', activity.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">View</span>
+                  </a>
+
+                  <a [routerLink]="['/activity', activity.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(activity)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

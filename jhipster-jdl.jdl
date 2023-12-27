@@ -1,0 +1,20 @@
+entity Relationship {
+    liked Boolean
+    shared Boolean
+}
+
+entity Activity {
+    description String
+    cost String
+    minParticipants Integer
+    maxParticipants Integer
+    time Integer
+    inOrOut String
+    homeOrAway String
+
+}
+
+relationship ManyToOne {
+    Relationship{user(login)} to User with builtInEntity
+    Relationship{description} to Activity
+}

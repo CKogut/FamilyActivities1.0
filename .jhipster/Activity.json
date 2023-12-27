@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20231226203049"
+  },
+  "applications": "*",
+  "entityTableName": "activity",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cost",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "minParticipants",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "maxParticipants",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "time",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "inOrOut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "homeOrAway",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Activity",
+  "relationships": [],
+  "searchEngine": "no"
+}

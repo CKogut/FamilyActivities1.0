@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-activity-heading" data-cy="ActivityCreateUpdateHeading">Create or edit a Activity</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cost">Cost</label>
+          <input type="text" class="form-control" name="cost" id="field_cost" data-cy="cost" formControlName="cost" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_minParticipants">Min Participants</label>
+          <input
+            type="number"
+            class="form-control"
+            name="minParticipants"
+            id="field_minParticipants"
+            data-cy="minParticipants"
+            formControlName="minParticipants"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_maxParticipants">Max Participants</label>
+          <input
+            type="number"
+            class="form-control"
+            name="maxParticipants"
+            id="field_maxParticipants"
+            data-cy="maxParticipants"
+            formControlName="maxParticipants"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_time">Time</label>
+          <input type="number" class="form-control" name="time" id="field_time" data-cy="time" formControlName="time" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_inOrOut">In Or Out</label>
+          <input type="text" class="form-control" name="inOrOut" id="field_inOrOut" data-cy="inOrOut" formControlName="inOrOut" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_homeOrAway">Home Or Away</label>
+          <input
+            type="text"
+            class="form-control"
+            name="homeOrAway"
+            id="field_homeOrAway"
+            data-cy="homeOrAway"
+            formControlName="homeOrAway"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

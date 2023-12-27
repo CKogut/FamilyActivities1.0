@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (activity) {
+      <div>
+        <h2 data-cy="activityDetailsHeading"><span>Activity</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ activity.id }}</span>
+          </dd>
+          <dt><span>Description</span></dt>
+          <dd>
+            <span>{{ activity.description }}</span>
+          </dd>
+          <dt><span>Cost</span></dt>
+          <dd>
+            <span>{{ activity.cost }}</span>
+          </dd>
+          <dt><span>Min Participants</span></dt>
+          <dd>
+            <span>{{ activity.minParticipants }}</span>
+          </dd>
+          <dt><span>Max Participants</span></dt>
+          <dd>
+            <span>{{ activity.maxParticipants }}</span>
+          </dd>
+          <dt><span>Time</span></dt>
+          <dd>
+            <span>{{ activity.time }}</span>
+          </dd>
+          <dt><span>In Or Out</span></dt>
+          <dd>
+            <span>{{ activity.inOrOut }}</span>
+          </dd>
+          <dt><span>Home Or Away</span></dt>
+          <dd>
+            <span>{{ activity.homeOrAway }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/activity', activity.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
