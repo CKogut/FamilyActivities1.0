@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Family Activities</title>
     <link rel="stylesheet" href="sstyles.css" />
-
     <script src="addactivity.js" async defer></script>
   </head>
 
   <body>
-    <h1>Family Activities</h1>
-    <p><a href="suggest.html">Back</a></p>
+    <header><h1>Family Activities</h1></header>
+    <a href="suggest.html">Back</a>
     <h3>Add New Activity</h3>
     <section id="section">
       <div id="post"></div>
@@ -40,7 +39,6 @@
         <input type="number" step="1" min="1" max="100" id="time" name="time" size="5" /><br />
 
         <label for="homeOrAway">Is the activity done at home or elsewhere?</label><br />
-        <!--  <input type="text" id="location" name="location" size="50" /><br /> -->
         <select name="homeOrAway" id="homeOrAway">
           <option value="Home">Home</option>
           <option value="Away">Away</option>
@@ -48,7 +46,6 @@
         <br />
 
         <label for="inOrOut">Is the activity typically indoors or outdoors?</label><br />
-        <!--  <input type="text" id="location" name="location" size="50" /><br /> -->
         <select name="inOrOut" id="inOrOut">
           <option value="Home">Indoors</option>
           <option value="Away">Outdoors</option>

@@ -2,11 +2,12 @@ const API_URL = 'http://localhost:8080'; // Replace with your actual API URL
 
 let data;
 
+// Get activities data and set global variable
 function fetchActivitiesData() {
   return fetch(`${API_URL}/api/activities`)
     .then(res => res.json())
     .then(resultData => {
-      data = resultData; // Set the global data variable
+      data = resultData;
       showRandom(data);
     })
     .catch(error => {
@@ -22,7 +23,7 @@ function getRandomObject(data) {
 
 function showRandom(data) {
   const suggestionContainer = document.getElementById('suggestion');
-  suggestionContainer.innerHTML = ''; // Clear previous content
+  suggestionContainer.innerHTML = ''; // Clear any previous content
 
   let div = document.createElement('div');
   let title = document.createElement('h3');
@@ -37,17 +38,16 @@ function showRandom(data) {
 }
 
 function displayObjectsByLocation(location) {
-  // Ensure data is defined before attempting to use it
   if (!data) {
-    console.error('Data is not defined.');
+    console.error('Error Loading Data');
     return;
   }
 
   var matchingObjectsContainer = document.getElementById('matchingObjects');
-  matchingObjectsContainer.innerHTML = ''; // Clear previous content
+  matchingObjectsContainer.innerHTML = ''; // Clear any previous content
 
   data.forEach(function (activity) {
-    if (location === 'all' || activity.inOrOut.toLowerCase() === location.toLowerCase()) {
+    if (activity.inOrOut.toLowerCase() === location.toLowerCase()) {
       displayActivity(activity);
     }
   });
@@ -63,7 +63,7 @@ function displayActivity(activity) {
   description.textContent = activity.description;
 
   var details = document.createElement('p');
-  details.textContent = `Cost: ${activity.cost}, Participants: ${activity.minParticipants}-${activity.maxParticipants}, Time: ${activity.time} hours`;
+  details.textContent = `Cost: ${activity.cost}, Participants: ${activity.minParticipants}-${activity.maxParticipants}, Approximate time: ${activity.time} hours`;
 
   activityDiv.appendChild(description);
   activityDiv.appendChild(details);
