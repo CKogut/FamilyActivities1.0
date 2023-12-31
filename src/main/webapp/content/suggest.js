@@ -1,8 +1,8 @@
-const API_URL = 'http://localhost:8080'; // Replace with your actual API URL
+const API_URL = 'http://localhost:8080';
 
 let data;
 
-// Get activities data and set global variable
+// Get activities data and set global data variable
 function fetchActivitiesData() {
   return fetch(`${API_URL}/api/activities`)
     .then(res => res.json())
