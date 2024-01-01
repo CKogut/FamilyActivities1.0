@@ -38,13 +38,28 @@
       <br />
     </section>
 
-    <section id="section2">
+    <section id="specifics">
+      <label for="cost">Free or some cost?</label>
+      <select name="cost" id="cost" autocomplete="off">
+        <option disabled selected value>-Select an option-</option>
+        <option value="Free">Free</option>
+        <option value="Cost">Some cost</option>
+      </select>
+
       <label for="location">Inside or outside activities?</label>
-      <select name="location" id="location">
+      <select name="location" id="location" autocomplete="off">
         <option disabled selected value>-Select an option-</option>
         <option value="Inside">Inside</option>
         <option value="Outside">Outside</option>
       </select>
+
+      <label for="setting">Home or get away?</label>
+      <select name="setting" id="setting" autocomplete="off">
+        <option disabled selected value>-Select an option-</option>
+        <option value="Home">Home</option>
+        <option value="Away">Away</option>
+      </select>
+
       <div id="matchingObjects"></div>
     </section>
   </body>

@@ -90,3 +90,11 @@ button span:hover {
 #suggestion {
   font-size: 50px;
 }
+
+#specifics {
+  text-align: center;
+}
+
+#specifics label {
+  margin-left: 50px; /* Adjust the value as needed */
+}
