@@ -39,6 +39,23 @@ function showRandom(data) {
   suggestionContainer.appendChild(div);
 }
 
+// For drop down of free or not
+function displayObjectsByCost(cost) {
+  if (!data) {
+    console.error('Error Loading Data');
+    return;
+  }
+
+  var matchingObjectsContainer = document.getElementById('matchingObjects');
+  matchingObjectsContainer.innerHTML = ''; // Clear any previous content
+
+  data.forEach(function (activity) {
+    if (activity.cost.toLowerCase() === cost.toLowerCase()) {
+      displayActivity(activity);
+    }
+  });
+}
+
 // For drop down of inside or outside location
 function displayObjectsByLocation(location) {
   if (!data) {
@@ -93,6 +110,11 @@ function displayActivity(activity) {
 }
 
 // event listeners
+document.getElementById('cost').addEventListener('change', function () {
+  var selectedCost = this.value;
+  displayObjectsByCost(selectedCost);
+});
+
 document.getElementById('location').addEventListener('change', function () {
   var selectedLocation = this.value;
   displayObjectsByLocation(selectedLocation);
