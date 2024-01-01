@@ -98,3 +98,8 @@ button span:hover {
 #specifics label {
   margin-left: 50px; /* Adjust the value as needed */
 }
+
+img {
+  height: 200px;
+  border-radius: 50%;
+}
