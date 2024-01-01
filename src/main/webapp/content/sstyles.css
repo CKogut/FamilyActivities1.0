@@ -1,7 +1,8 @@
 body {
   font-family: 'Arial', sans-serif;
   background: #f3f3f3;
-  text-align: center;
+  margin: 0px 100px 100px 100px;
+  line-height: 1.6;
 }
 
 #wrapper {
@@ -80,4 +81,12 @@ button span {
 button span:hover {
   backdrop-filter: blur(0px);
   color: #ffffff;
+}
+
+#random {
+  text-align: center;
+}
+
+#suggestion {
+  font-size: 50px;
 }
