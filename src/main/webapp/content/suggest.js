@@ -50,7 +50,9 @@ function displayObjectsByCost(cost) {
   matchingObjectsContainer.innerHTML = ''; // Clear any previous content
 
   data.forEach(function (activity) {
-    if (activity.cost.toLowerCase() === cost.toLowerCase()) {
+    if (cost.toLowerCase() === 'cost' && activity.cost.toLowerCase() !== 'free') {
+      displayActivity(activity);
+    } else if (cost.toLowerCase() === 'free' && activity.cost.toLowerCase() === 'free') {
       displayActivity(activity);
     }
   });
