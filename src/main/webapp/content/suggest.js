@@ -16,11 +16,13 @@ function fetchActivitiesData() {
     });
 }
 
+// Get a random activity
 function getRandomObject(data) {
   var randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
 
+// Display random activity
 function showRandom(data) {
   const suggestionContainer = document.getElementById('suggestion');
   suggestionContainer.innerHTML = ''; // Clear any previous content
@@ -37,6 +39,7 @@ function showRandom(data) {
   suggestionContainer.appendChild(div);
 }
 
+// For drop down of inside or outside location
 function displayObjectsByLocation(location) {
   if (!data) {
     console.error('Error Loading Data');
@@ -53,6 +56,24 @@ function displayObjectsByLocation(location) {
   });
 }
 
+// For drop down of home or away i.e. "setting"
+function displayObjectsBySetting(setting) {
+  if (!data) {
+    console.error('Error Loading Data');
+    return;
+  }
+
+  var matchingObjectsContainer = document.getElementById('matchingObjects');
+  matchingObjectsContainer.innerHTML = ''; // Clear any previous content
+
+  data.forEach(function (activity) {
+    if (activity.homeOrAway.toLowerCase() === setting.toLowerCase()) {
+      displayActivity(activity);
+    }
+  });
+}
+
+// Display the matching activities
 function displayActivity(activity) {
   var matchingObjectsContainer = document.getElementById('matchingObjects');
 
@@ -71,9 +92,15 @@ function displayActivity(activity) {
   matchingObjectsContainer.appendChild(activityDiv);
 }
 
+// event listeners
 document.getElementById('location').addEventListener('change', function () {
   var selectedLocation = this.value;
   displayObjectsByLocation(selectedLocation);
+});
+
+document.getElementById('setting').addEventListener('change', function () {
+  var selectedSetting = this.value;
+  displayObjectsBySetting(selectedSetting);
 });
 
 function handlePage() {
