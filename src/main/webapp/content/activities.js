@@ -19,14 +19,6 @@ function fetchActivitiesData() {
     });
 }
 
-// takes a UNIX integer date, and produces a prettier human string
-function dateOf(date) {
-  const milliseconds = date * 1000; // 1575909015000
-  const dateObject = new Date(milliseconds);
-  const humanDateFormat = dateObject.toLocaleString(); //2019-12-9 10:30:15
-  return humanDateFormat;
-}
-
 function showActivityList(data) {
   // the data parameter will be a JS array of JS objects
   // this uses a combination of "HTML building" DOM methods (the document createElements) and
