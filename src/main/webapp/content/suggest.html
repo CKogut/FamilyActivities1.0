@@ -25,21 +25,19 @@
       </nav>
     </div>
 
-    <br />
-
     <section id="random">
+      <div id="suggestion"></div>
       <div id="select">
-        <button onClick="window.location.reload();">
-          <span>Random Suggestion!</span>
+        <button class="pushable" onClick="window.location.reload();">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front">Random Suggestion!</span>
         </button>
       </div>
-
-      <div id="suggestion"></div>
-      <br />
     </section>
 
     <section id="specifics">
-      <p>Click the above link to see details of the activity or select a drop-down below to see all matching activities.</p>
+      <h3>Click the above link to see details of the activity or select a drop-down below to see all matching activities.</h3>
       <label for="cost">Free or some cost?</label>
       <select name="cost" id="cost" autocomplete="off">
         <option disabled selected value>-Select an option-</option>
