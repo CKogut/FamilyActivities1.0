@@ -92,23 +92,33 @@ function displayObjectsBySetting(setting) {
   });
 }
 
-// Display the matching activities
 function displayActivity(activity) {
   var matchingObjectsContainer = document.getElementById('matchingObjects');
 
-  var activityDiv = document.createElement('div');
-  activityDiv.classList.add('activity');
+  // Check all three conditions before displaying the activity
+  var selectedCost = document.getElementById('cost').value.toLowerCase();
+  var selectedLocation = document.getElementById('location').value.toLowerCase();
+  var selectedSetting = document.getElementById('setting').value.toLowerCase();
 
-  var description = document.createElement('h2');
-  description.textContent = activity.description;
+  if (
+    (selectedCost === 'cost' || (selectedCost === 'free' && activity.cost.toLowerCase() === 'free')) &&
+    (selectedLocation === 'all' || activity.inOrOut.toLowerCase() === selectedLocation) &&
+    (selectedSetting === 'all' || activity.homeOrAway.toLowerCase() === selectedSetting)
+  ) {
+    var activityDiv = document.createElement('div');
+    activityDiv.classList.add('activity');
 
-  var details = document.createElement('p');
-  details.textContent = `Cost: ${activity.cost}, Participants: ${activity.minParticipants}-${activity.maxParticipants}, Approximate time: ${activity.time} hours`;
+    var description = document.createElement('h2');
+    description.textContent = activity.description;
 
-  activityDiv.appendChild(description);
-  activityDiv.appendChild(details);
+    var details = document.createElement('p');
+    details.textContent = `Cost: ${activity.cost}, Participants: ${activity.minParticipants}-${activity.maxParticipants}, Approximate time: ${activity.time} hours`;
 
-  matchingObjectsContainer.appendChild(activityDiv);
+    activityDiv.appendChild(description);
+    activityDiv.appendChild(details);
+
+    matchingObjectsContainer.appendChild(activityDiv);
+  }
 }
 
 // event listeners
